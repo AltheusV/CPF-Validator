@@ -1,9 +1,9 @@
 package br.com.poli.exerciciorecursao;
 
-public class Cpf {
+public class Validator {
 
 	public String calculaDigitoVerificador(String cpf){	// retorna o digito verificador do cpf
-														// metodo que irá verificar se o cpf é válido
+														// metodo que ira verificar se o cpf e valido
 		String verificadores = "";						// a partir do digito verificador.
 		int digitoVerificador = 0;
 		int somatorio1 = 0;
@@ -38,13 +38,13 @@ public class Cpf {
 	}
 
 	public String cpfRecursivo(String[] cpfs){		// METODO PRINCIPAL
-													// caso o retorno seja vazio, não há nenhum CPF válido.
+													// caso o retorno seja vazio, nao ha nenhum CPF valido.
 		return verificaCpf(cpfs,"",0,1);			// possui como parametro uma string vazia para combinacoes, e 0 e 1 para as posicoes iniciais dos arrays
 	}
 
 	private String verificaCpf(String[] cpfs, String cpfVerificado, int cpf1, int cpf2){ 		// metodo recursivo
 
-		if(cpfs.length==1){						// se houver apenas 1 cpf no array, nao há necessidade das combinacoes.
+		if(cpfs.length==1){						// se houver apenas 1 cpf no array, nao ha necessidade das combinacoes.
 			cpfVerificado = cpfs[0];
 		}
 
@@ -57,7 +57,7 @@ public class Cpf {
 			checarDigitos += cpfVerificado.charAt(10);
 
 			for(int i =0; i<cpfVerificado.length()-2; i++){		// repassa os 9 primeiros digitos do cpf para 
-				checarCpf+=cpfVerificado.charAt(i);				// a string que será comparada.
+				checarCpf+=cpfVerificado.charAt(i);				// a string que sera comparada.
 			}
 
 			if(checarDigitos.equals(calculaDigitoVerificador(checarCpf))){		// compara os digitos verificadores.
@@ -78,13 +78,13 @@ public class Cpf {
 			int pos = cpfVerificado.length();					// posicao do digito no momento. CpfVerificado inicia "" e aumenta a partir da chamada recursiva.
 
 			while(cpf1<qtd){
-				while(cpf2<qtd){														// compara o valor correspondente a posicao do cpf atual com o do próximo,
-					if(cpfs[cpf1].charAt(pos) != cpfs[cpf2].charAt(pos)){			// se for diferente, concatena com o valor do primeiro, e chama o método para o próximo digito
+				while(cpf2<qtd){														// compara o valor correspondente a posicao do cpf atual com o do prï¿½ximo,
+					if(cpfs[cpf1].charAt(pos) != cpfs[cpf2].charAt(pos)){			// se for diferente, concatena com o valor do primeiro, e chama o mï¿½todo para o prï¿½ximo digito
 
 						cpfVerificado+=cpfs[cpf1].charAt(pos);
 						cpfVerificado = verificaCpf(cpfs, cpfVerificado,cpf1,cpf2);
 
-						if(cpfVerificado.length()==11){						// se no caso base retornar 11 digitos, o cpf é válido
+						if(cpfVerificado.length()==11){						// se no caso base retornar 11 digitos, o cpf ï¿½ vï¿½lido
 							return cpfVerificado;							// portanto, retorna o cpf.
 						}
 
@@ -93,7 +93,7 @@ public class Cpf {
 								cpfVerificado+=cpfs[count].charAt(pos);							
 								cpfVerificado = verificaCpf(cpfs, cpfVerificado,cpf1,cpf2);
 								
-								if(cpfVerificado.length()==11){							// se tiver os 11 digitos, o cpf é válido.
+								if(cpfVerificado.length()==11){							// se tiver os 11 digitos, o cpf ï¿½ vï¿½lido.
 									return cpfVerificado;
 								}
 							}
@@ -102,11 +102,11 @@ public class Cpf {
 						}
 					}
 					else{
-						cpfVerificado+=cpfs[cpf1].charAt(pos);				// se os valores forem iguais, não há necessidade de checar 2x
+						cpfVerificado+=cpfs[cpf1].charAt(pos);				// se os valores forem iguais, nï¿½o hï¿½ necessidade de checar 2x
 						cpfVerificado = verificaCpf(cpfs, cpfVerificado,cpf1,cpf2);
 					}
 					
-					if(cpfVerificado.length()==11){							// se tiver os 11 digitos, o cpf é válido.
+					if(cpfVerificado.length()==11){							// se tiver os 11 digitos, o cpf ï¿½ vï¿½lido.
 						return cpfVerificado;
 					}
 					
@@ -116,8 +116,8 @@ public class Cpf {
 							return cpfVerificado;
 						}
 						else if(cpf2+1==qtd){								// acabou as combinacoes possiveis para este cpf	
-							cpf1++;											// a combinacao será agora do próximo cpf
-							cpf2=cpf1+1;									// com o próximo do próximo.
+							cpf1++;											// a combinacao serï¿½ agora do prï¿½ximo cpf
+							cpf2=cpf1+1;									// com o prï¿½ximo do prï¿½ximo.
 						}
 						else{
 							cpf2++;											// verifica a combinacao do cpf atual, com o proximo cpf
@@ -129,13 +129,13 @@ public class Cpf {
 							cpfVerificado+=cpfs[count].charAt(pos);
 							cpfVerificado = verificaCpf(cpfs, cpfVerificado,cpf1,cpf2);
 							
-							if(cpfVerificado.length()==11){							// se tiver os 11 digitos, o cpf é válido.
+							if(cpfVerificado.length()==11){							// se tiver os 11 digitos, o cpf ï¿½ vï¿½lido.
 								return cpfVerificado;
 							}
 						}
 																			// se nenhuma combinacao nesta posicao retornou o cpf
 						String proximoCpf = "";								// o metodo retorna a string com um digito a menos, ou seja
-						for(int k = 0; k<cpfVerificado.length()-1; k++){	// irá para uma proxima combinacao entre os dois cpfs atuais.
+						for(int k = 0; k<cpfVerificado.length()-1; k++){	// ira para uma proxima combinacao entre os dois cpfs atuais.
 							proximoCpf += cpfVerificado.charAt(k);
 						}
 						return proximoCpf;
